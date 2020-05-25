@@ -42,6 +42,7 @@ def adjust_rcParams(style='seaborn', use_kpfonts=False, dark_mode=False):
         # 'axes.grid.axis': 'both',
         'figure.facecolor': (0, 0, 0, 0),
         # 'figure.edgecolor': 'black',
+        'figure.dpi': '300',
         'savefig.facecolor': (0, 0, 0, 0),
     })
 

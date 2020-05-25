@@ -173,14 +173,14 @@ class BarrosMW:
                 # Convert masses from units of 10^10 Msun to 1 Msun
                 for i_param in range(len(self.disc_params) - 2):
                     if i_param % 2 == 0:
-                        p_discs[i_disc][i_param] *= 1.e-10
+                        p_discs[i_disc][i_param] *= 1.e10
 
             # Collect spheroids
             n_sph = int(fh.readline())
             p_sph = []
             for i_sph in range(n_sph):
                 p_sph += [[float(n) for n in fh.readline().split(' ')]]
-            p_sph[0][0] *= 1.e-10       # into Msun
+            p_sph[0][0] *= 1.e10       # into Msun
             p_sph[1][1] *= 1.e5 / nm.v  # into kpc / Myr
 
             # Explicitly store values for the components
@@ -197,6 +197,9 @@ class BarrosMW:
             self.p_discs = p_discs
             self.n_sph = n_sph
             self.p_sph = p_sph
+
+            # Units converter
+            self.kpc_Myr_to_km_s = 977.77
 
     def thin_disc_density(self, r, z):
         return triple_miyamoto_nagai_density_m3(r, z, *self.p_thin)
