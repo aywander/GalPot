@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 from cycler import cycler
 
+global c
+
 def adjust_rcParams(style='seaborn', use_kpfonts=False, dark_mode=False):
 
     plt.style.use(style)
@@ -19,7 +21,11 @@ def adjust_rcParams(style='seaborn', use_kpfonts=False, dark_mode=False):
         tableau10_colors = ['006BA4', 'FF800E', 'ABABAB', '595959', '5F9ED1', 'C85200', '898989', 'A2C8EC', 'FFBC79',
                             'CFCFCF']
 
-    plt.rcParams['axes.prop_cycle'] = cycler(color=['#' + s for s in tableau10_colors])
+    prop_cycle = cycler(color=['#' + s for s in tableau10_colors])
+    plt.rcParams['axes.prop_cycle'] = prop_cycle
+
+    global c
+    c = prop_cycle.by_key()['color']
 
     plt.rcParams.update({
         'text.color': fc,
